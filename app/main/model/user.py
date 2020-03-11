@@ -27,3 +27,10 @@ class User(db.Model):
             raise AssertionError('The phone number is not valid')
         return phone_number
 
+    @validates('password')
+    def validate_password(self, key, password):
+        if len(password) < 6:
+            raise AssertionError('The password is too short')
+        return password
+
+
